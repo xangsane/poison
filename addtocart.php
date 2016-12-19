@@ -37,8 +37,7 @@ if (pg_num_rows($result)==0) { PERFORM ACTION } kapag meron nireturn yung query-
         $ang_isapangquery = pg_query($connect,$isapangquery);
         $row = pg_fetch_assoc($ang_isapangquery);
         $quantity = $row['quantity'] - 1;
-        $presyo = $quantity_sa_cart * $row['price'];
-        $update_query_cart = "UPDATE item_cart SET quantity = $quantity_sa_cart, total = $presyo WHERE username = '$username' AND breadid = $breadid";
+        $update_query_cart = "UPDATE item_cart SET quantity = $quantity_sa_cart WHERE username = '$username' AND breadid = $breadid";
         $update_query = "UPDATE bread SET quantity = $quantity WHERE breadid = $breadid";
         pg_query($connect,$update_query_cart);
         pg_query($connect,$update_query);
