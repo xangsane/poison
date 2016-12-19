@@ -1,6 +1,7 @@
 <?php
 session_start();
-$connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+include 'connectdb.php';
+$connect = pg_connect(pg_connections());
 
 $bread = $_POST['breadname'];
 $qty = $_POST['quantity'];

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'connectdb.php';
 ?>
 
 <html>
@@ -10,7 +11,7 @@ session_start();
     <?php include 'navbar.php'; ?>
     <?php if (isset($_SESSION['username']) && $_SESSION['type'] == 1): ?>
     <?php $breadid = $_POST['breadid'];
-      $connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+      $connect = pg_connect(pg_connections());
       $another_query_line = "SELECT * from bread WHERE breadid = $breadid";
       $another_query = pg_query($connect,$another_query_line);
       $breadrow = pg_fetch_assoc($another_query);

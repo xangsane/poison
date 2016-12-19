@@ -1,6 +1,7 @@
 <?php
 $breadid = $_POST['breadid'];
-$connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+include 'connectdb.php';
+$connect = pg_connect(pg_connections());
 $query = "SELECT * FROM bread WHERE breadid = $breadid";
 $ang_query = pg_query($connect,$query);
 $row = pg_fetch_assoc($ang_query);

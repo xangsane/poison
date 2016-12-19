@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <?php   session_start();
+        include 'connectdb.php';
         $_SESSION['previous_location'] = 'cart.php';
-        $connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+        $connect = pg_connect(pg_connections());
         if ($_SESSION['type'] == 0) {
           $query = "SELECT * FROM bread WHERE bread.quantity >= 1 ORDER BY bread.breadid ASC";
         }

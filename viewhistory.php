@@ -1,6 +1,7 @@
 <?php session_start();
+  include 'connectdb.php';
   $username = $_POST['username'];
-  $connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+  $connect = pg_connect(pg_connections());
   $query = "SELECT * FROM users WHERE username = '$username'";
   $ang_query = pg_query($connect,$query);
   $row = pg_fetch_assoc($ang_query);

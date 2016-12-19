@@ -5,12 +5,13 @@ balik sa cart
 main query = SELECT * from item_cart WHERE breadid = postbreadid
 if (pg_num_rows($result)==0) { PERFORM ACTION } kapag meron nireturn yung query-->
 <?php session_start();
+      include 'connectdb.php';
       $breadid = $_POST['breadid'];
       $breadid = (int)$breadid;
       $username = $_SESSION['username'];
       $price = $_POST['cost'];
       #echo $breadid;
-      $connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+      $connect = pg_connect(pg_connections());
       $query = "SELECT * FROM item_cart WHERE username = '$username' AND breadid = $breadid ";
       $ang_query = pg_query($connect,$query);
       $rowsacart = pg_fetch_assoc($ang_query);

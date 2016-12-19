@@ -3,6 +3,7 @@ kung 1 na lang delete, kung hindi update cart + inventory-->
 
 <?php
   session_start();
+  include 'connectdb.php';
   $breadid = $_POST['breadid'];
   if ($_SESSION['type'] == 0) {
     $username = $_SESSION['username'];
@@ -10,7 +11,7 @@ kung 1 na lang delete, kung hindi update cart + inventory-->
   elseif ($_SESSION['type'] == 1) {
     $username = $_POST['username'];
   }
-  $connect = pg_connect("host=localhost port=5432 dbname=op user=postgres password=1234");
+  $connect = pg_connect(pg_connections());
   $query = "SELECT * FROM item_cart WHERE username = '$username' AND breadid = $breadid ";
   $ang_query = pg_query($connect,$query);
   $rowsacart = pg_fetch_assoc($ang_query);
