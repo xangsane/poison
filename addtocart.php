@@ -21,7 +21,7 @@ if (pg_num_rows($result)==0) { PERFORM ACTION } kapag meron nireturn yung query-
 
       if (pg_num_rows($ang_query) == 0) { //kapag wala pang username at yung breadid sa table (wala pang cart or wala pang particular item sa cart)
         // $presyo = $row['price'];
-        $insert_query = "INSERT INTO item_cart values ('$username',$breadid, 1, $price)";
+        $insert_query = "INSERT INTO item_cart values ('$username',$breadid, 1)";
         pg_query($connect,$insert_query);
         $isapangquery = "SELECT * FROM bread where breadid = $breadid";
         $ang_isapangquery = pg_query($connect,$isapangquery);
